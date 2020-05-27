@@ -1,0 +1,3 @@
+server:
+  httpPort: 8081
+  systemName: ego-demo
