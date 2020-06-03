@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"ego-demo/http/helper"
 	"ego-demo/pkg/enum/statusCode"
 	"ego-demo/pkg/request"
 	"ego-demo/pkg/service"
@@ -52,4 +53,12 @@ func UserRegisterHandler(ctx *gin.Context)  {
 	// 输出响应内容
 	response.WrapContext(ctx).Success(nil)
 
+}
+
+// GetUserInfoHandler 获取用户信息
+func GetUserInfoHandler(ctx *gin.Context)  {
+	loginUser := helper.GeLoginUserFromContext(ctx)
+	response.WrapContext(ctx).Success(response.Data{
+		"email": loginUser.Email,
+	})
 }

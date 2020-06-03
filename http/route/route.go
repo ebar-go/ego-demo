@@ -22,7 +22,13 @@ func Load(router *gin.Engine)  {
 
 		// 注册
 		v1.POST("user/register", handler.UserRegisterHandler)
+
+
 	}
 
-	// TODO 权限校验
+	// 指定路由组需要JWT校验
+	private := v1.Group("private").Use(middleware.JWT)
+	{
+		private.GET("user/info", handler.GetUserInfoHandler)
+	}
 }

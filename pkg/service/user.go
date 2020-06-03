@@ -6,6 +6,7 @@ import (
 	"ego-demo/pkg/request"
 	"ego-demo/pkg/response"
 	"ego-demo/pkg/service/dao"
+	"ego-demo/pkg/service/data"
 	"ego-demo/pkg/service/entity"
 	"fmt"
 	"github.com/ebar-go/ego/app"
@@ -15,7 +16,6 @@ import (
 	"github.com/ebar-go/ego/utils/date"
 	"github.com/ebar-go/ego/utils/strings"
 	"github.com/jinzhu/gorm"
-	"strconv"
 )
 
 type userService struct {
@@ -44,7 +44,11 @@ func (service *userService) Auth(req request.UserAuthRequest) (*response.UserAut
 	// 组装结构体
 	res := new(response.UserAuthResponse)
 	// 生成token
-	token, err := auth.New(config.Server().JwtSignKey).GenerateToken(86400, strconv.Itoa(user.ID))
+	userClaims := new(data.UserClaims)
+	userClaims.ExpiresAt = date.GetTimeStamp() + 3600
+	userClaims.User.Id = user.ID
+	userClaims.User.Email = user.Email
+	token, err := auth.New(config.Server().JwtSignKey).GenerateToken(userClaims)
 
 	if err != nil {
 		return nil, errors.New(statusCode.TokenGenerateFailed, err.Error())
