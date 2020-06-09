@@ -2,7 +2,9 @@ package main
 
 import (
 	"ego-demo/http/route"
+	"fmt"
 	"github.com/ebar-go/ego/app"
+	"github.com/ebar-go/ego/component/event"
 	"github.com/ebar-go/ego/config"
 	"github.com/ebar-go/ego/http"
 	"github.com/ebar-go/ego/http/validator"
@@ -19,6 +21,13 @@ func init()  {
 
 	// 设置自定义验证器,支持字段命名
 	binding.Validator = new(validator.Validator)
+
+	// 支持停止http服务时的回调
+	event.Listen(event.BeforeHttpShutdown, func(ev event.Event) {
+		// 关闭数据库
+		fmt.Println("close database")
+		_ = app.DB().Close()
+	})
 }
 
 func main()  {
@@ -30,3 +39,4 @@ func main()  {
 	// 启动
 	secure.Panic(s.Start())
 }
+
