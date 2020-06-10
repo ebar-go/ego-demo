@@ -1,5 +1,5 @@
 package constant
 
-const(
+const (
 	UserKey = "user"
 )

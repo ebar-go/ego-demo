@@ -12,7 +12,16 @@ import (
 )
 
 // UserAuthHandler 用户登录
-func UserAuthHandler(ctx *gin.Context)  {
+// @Summary 用户登录
+// @Description 通过邮箱和密码登录，换取token
+// @Accept  json
+// @Produce json
+// @Param email body string true "邮箱"
+// @Param pass body string true "密码"
+// @Success 0 "success"
+// @Failure 500 "error"
+// @Router /user/auth [post]
+func UserAuthHandler(ctx *gin.Context) {
 	// 通过结构体获取参数
 	var req request.UserAuthRequest
 
@@ -33,9 +42,16 @@ func UserAuthHandler(ctx *gin.Context)  {
 
 }
 
-
 // UserRegisterHandler 用户注册
-func UserRegisterHandler(ctx *gin.Context)  {
+// @Summary 用户注册
+// @Description 通过邮箱和密码注册账户
+// @Accept  json
+// @Produce json
+// @Param req body request.UserRegisterRequest true "请求参数"
+// @Success 0 "success"
+// @Failure 500 "error"
+// @Router /user/register [post]
+func UserRegisterHandler(ctx *gin.Context) {
 	var req request.UserRegisterRequest
 
 	// 校验参数
@@ -56,7 +72,7 @@ func UserRegisterHandler(ctx *gin.Context)  {
 }
 
 // GetUserInfoHandler 获取用户信息
-func GetUserInfoHandler(ctx *gin.Context)  {
+func GetUserInfoHandler(ctx *gin.Context) {
 	loginUser := helper.GeLoginUserFromContext(ctx)
 	response.WrapContext(ctx).Success(response.Data{
 		"email": loginUser.Email,

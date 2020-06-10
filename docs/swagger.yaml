@@ -1,0 +1,75 @@
+basePath: /v1
+definitions:
+  request.UserRegisterRequest:
+    properties:
+      email:
+        description: 邮箱
+        type: string
+      pass:
+        description: 密码
+        type: string
+    required:
+    - email
+    - pass
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: xiaok2013@live.com
+    name: hongker
+    url: http://hongker.github.io
+  description: This is a sample server Petstore server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /user/auth:
+    post:
+      consumes:
+      - application/json
+      description: 通过邮箱和密码登录，换取token
+      parameters:
+      - description: 邮箱
+        in: body
+        name: email
+        required: true
+        schema:
+          type: string
+      - description: 密码
+        in: body
+        name: pass
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "0":
+          description: success
+        "500":
+          description: error
+      summary: 用户登录
+  /user/register:
+    post:
+      consumes:
+      - application/json
+      description: 通过邮箱和密码注册账户
+      parameters:
+      - description: 请求参数
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/request.UserRegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "0":
+          description: success
+        "500":
+          description: error
+      summary: 用户注册
+swagger: "2.0"

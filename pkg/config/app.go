@@ -9,6 +9,6 @@ type appConfig struct {
 
 func App() *appConfig {
 	return &appConfig{
-		AdminEmail:viper.GetString("app.adminEmail"),
+		AdminEmail: viper.GetString("app.adminEmail"),
 	}
 }

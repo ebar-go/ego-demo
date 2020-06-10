@@ -3,7 +3,7 @@ package data
 import "github.com/dgrijalva/jwt-go"
 
 type User struct {
-	Id int
+	Id    int
 	Email string
 }
 

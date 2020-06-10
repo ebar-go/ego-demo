@@ -10,7 +10,7 @@ type userDao struct {
 }
 
 func User(db *gorm.DB) *userDao {
-	return &userDao{BaseDao{db:db}}
+	return &userDao{BaseDao{db: db}}
 }
 
 // GetByUsername 根据用户名获取记录

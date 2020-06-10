@@ -6,6 +6,6 @@ import (
 )
 
 // IndexHandler
-func IndexHandler(ctx *gin.Context)  {
+func IndexHandler(ctx *gin.Context) {
 	response.WrapContext(ctx).Success(nil)
 }

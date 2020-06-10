@@ -2,7 +2,7 @@ package entity
 
 type UserEntity struct {
 	BaseEntity
-	Email string `json:"email" gorm:"column:email"`
+	Email    string `json:"email" gorm:"column:email"`
 	Password string `json:"password" gorm:"column:password"`
 }
 

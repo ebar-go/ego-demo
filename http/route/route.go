@@ -2,15 +2,19 @@
 package route
 
 import (
+	_ "ego-demo/docs"
 	"ego-demo/http/handler"
 	"github.com/ebar-go/ego/http/middleware"
 	"github.com/gin-gonic/gin"
 )
 
 // Load
-func Load(router *gin.Engine)  {
+func Load(router *gin.Engine) {
 	// 加载中间件,trace,cors,requestLog,recover
 	router.Use(middleware.Trace, middleware.CORS, middleware.RequestLog, middleware.Recover)
+
+	// 通过 {host}/swagger/index.html访问swagger web
+	router.GET("/swagger/*any", middleware.Swagger())
 
 	router.GET("/", handler.IndexHandler)
 
@@ -22,7 +26,6 @@ func Load(router *gin.Engine)  {
 
 		// 注册
 		v1.POST("user/register", handler.UserRegisterHandler)
-
 
 	}
 

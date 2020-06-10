@@ -19,11 +19,10 @@ import (
 )
 
 type userService struct {
-
 }
 
 // User 用户服务
-func User()*userService  {
+func User() *userService {
 	return &userService{}
 }
 
