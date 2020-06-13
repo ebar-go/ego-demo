@@ -10,8 +10,6 @@ import (
 	"ego-demo/pkg/service/entity"
 	"fmt"
 	"github.com/ebar-go/ego/app"
-	"github.com/ebar-go/ego/component/auth"
-	"github.com/ebar-go/ego/config"
 	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/ego/utils/date"
 	"github.com/ebar-go/ego/utils/strings"
@@ -47,7 +45,7 @@ func (service *userService) Auth(req request.UserAuthRequest) (*response.UserAut
 	userClaims.ExpiresAt = date.GetTimeStamp() + 3600
 	userClaims.User.Id = user.ID
 	userClaims.User.Email = user.Email
-	token, err := auth.New(config.Server().JwtSignKey).GenerateToken(userClaims)
+	token, err := app.Jwt().GenerateToken(userClaims)
 
 	if err != nil {
 		return nil, errors.New(statusCode.TokenGenerateFailed, err.Error())

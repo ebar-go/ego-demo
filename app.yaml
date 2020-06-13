@@ -19,3 +19,12 @@ mysql:    # mysql配置。支持多数据库，读写分离
         user: root
         password: mysql
         name: blog
+
+redis:
+  host: 127.0.0.1
+  pass:
+  port: 6379
+  poolSize: 100
+  maxRetries: 3
+  idleTimeout: 3
+  cluster:

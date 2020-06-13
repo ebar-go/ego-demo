@@ -4,6 +4,7 @@ package route
 import (
 	_ "ego-demo/docs"
 	"ego-demo/http/handler"
+	"ego-demo/pkg/service/data"
 	"github.com/ebar-go/ego/http/middleware"
 	"github.com/gin-gonic/gin"
 )
@@ -30,7 +31,7 @@ func Load(router *gin.Engine) {
 	}
 
 	// 指定路由组需要JWT校验
-	private := v1.Group("private").Use(middleware.JWT)
+	private := v1.Group("private").Use(middleware.JWT(&data.UserClaims{}))
 	{
 		private.GET("user/info", handler.GetUserInfoHandler)
 	}

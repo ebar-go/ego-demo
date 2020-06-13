@@ -58,6 +58,8 @@ github.com/ebar-go/ego v0.9.10 h1:L6KYkWhUgkxMJwUo3IQvRD4VQSZWimxaZA5+t61Qpds=
 github.com/ebar-go/ego v0.9.10/go.mod h1:spbzz8RIGqY0WOsBgeZ7mZxxO25/aBNh48ewo8gb6y8=
 github.com/ebar-go/ego v0.9.11 h1:xU4UQovXMFH/LCbHdLP/b93RlNFyo1IhTbvdPajITH0=
 github.com/ebar-go/ego v0.9.11/go.mod h1:UsOYB5szITC9F+7mLrkfmjq2S9HPh62APzjtYwCJpyY=
+github.com/ebar-go/ego v0.9.13 h1:FWRS8cfI8KkqIP+HcV+C9tWJTv/2T8YcqKNlBVBXDHI=
+github.com/ebar-go/ego v0.9.13/go.mod h1:KAtfgOgE+0M0feiYOiFXGRxwMcmirX+7vlSuLyZOAgY=
 github.com/ebar-go/event v0.1.0/go.mod h1:6jbMJhW8ZMmM6iOz6cI9EaYP7xbFGsIz9N17c/CB06Y=
 github.com/ebar-go/event v0.2.0 h1:+p4LXI4/L2nztpZJeXo2Hon1zEnbUGYPxu+pJfTCmAk=
 github.com/ebar-go/event v0.2.0/go.mod h1:6jbMJhW8ZMmM6iOz6cI9EaYP7xbFGsIz9N17c/CB06Y=
@@ -166,6 +168,8 @@ github.com/gorilla/mux v1.6.2/go.mod h1:1lud6UwP+6orDFRuTfBEV8e9/aOM/c4fVVCaMa2z
 github.com/gorilla/websocket v1.4.0/go.mod h1:E7qHFY5m1UJ88s3WnNqhKjPHQ0heANvMoAMk2YaljkQ=
 github.com/gorilla/websocket v1.4.1 h1:q7AeDBpnBk8AogcD4DSag/Ukw/KV+YhzLj2bP5HvKCM=
 github.com/gorilla/websocket v1.4.1/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
+github.com/gorilla/websocket v1.4.2 h1:+/TMaTYc4QFitKJxsQ7Yye35DkWvkdLcvGKqM+x0Ufc=
+github.com/gorilla/websocket v1.4.2/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
 github.com/grpc-ecosystem/go-grpc-middleware v1.0.0/go.mod h1:FiyG127CGDf3tlThmgyCl78X/SZQqEOJBCDaAfeWzPs=
 github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0/go.mod h1:8NvIoxWQoOIhqOTXgfV/d3M/q6VIi02HzZEHgUlZvzk=
 github.com/grpc-ecosystem/grpc-gateway v1.9.0/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=
