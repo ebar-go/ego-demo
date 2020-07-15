@@ -6,17 +6,17 @@ import (
 	"github.com/ebar-go/ego"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/component/event"
-	"github.com/ebar-go/ego/utils/secure"
+	"github.com/ebar-go/egu"
 )
 
 func init() {
 	// 加载配置
-	secure.Panic(app.Config().LoadFile("app.yaml"))
+	egu.SecurePanic(app.Config().LoadFile("app.yaml"))
 
 	// 初始化数据库
-	secure.Panic(app.InitDB())
+	egu.SecurePanic(app.InitDB())
 
-	secure.Panic(app.Redis().Connect())
+	egu.SecurePanic(app.Redis().Connect())
 
 	// 支持停止http服务时的回调
 	event.Listen(event.BeforeHttpShutdown, func(ev event.Event) {
@@ -47,5 +47,5 @@ func main() {
 	route.Load(s.Router)
 
 	// 启动
-	secure.Panic(s.Start())
+	egu.SecurePanic(s.Start())
 }

@@ -4,7 +4,7 @@ import (
 	"ego-demo/pkg/service/data"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/errors"
-	"github.com/ebar-go/ego/utils/secure"
+	"github.com/ebar-go/egu"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,12 +12,12 @@ import (
 func GeLoginUserFromContext(ctx *gin.Context) data.User {
 	claims , _:= ctx.Get(app.Jwt().ClaimsKey)
 	if claims == nil {
-		secure.Panic(errors.Unauthorized("please login first"))
+		egu.SecurePanic(errors.Unauthorized("please login first"))
 	}
 
 	userClaims, ok := claims.(*data.UserClaims)
 	if !ok {
-		secure.Panic(errors.Unauthorized("please login first"))
+		egu.SecurePanic(errors.Unauthorized("please login first"))
 	}
 
 	return userClaims.User

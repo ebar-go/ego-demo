@@ -5,6 +5,7 @@ import (
 	_ "ego-demo/docs"
 	"ego-demo/http/handler"
 	"ego-demo/pkg/service/data"
+	egoHandler "github.com/ebar-go/ego/http/handler"
 	"github.com/ebar-go/ego/http/middleware"
 	"github.com/gin-gonic/gin"
 )
@@ -15,7 +16,7 @@ func Load(router *gin.Engine) {
 	router.Use(middleware.Trace, middleware.CORS, middleware.RequestLog, middleware.Recover)
 
 	// 通过 {host}/swagger/index.html访问swagger web
-	router.GET("/swagger/*any", middleware.Swagger())
+	router.GET("/swagger/*any", egoHandler.SwaggerHandler())
 
 	router.GET("/", handler.IndexHandler)
 

@@ -11,8 +11,7 @@ import (
 	"fmt"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/errors"
-	"github.com/ebar-go/ego/utils/date"
-	"github.com/ebar-go/ego/utils/strings"
+	"github.com/ebar-go/egu"
 	"github.com/jinzhu/gorm"
 )
 
@@ -34,7 +33,7 @@ func (service *userService) Auth(req request.UserAuthRequest) (*response.UserAut
 	}
 
 	// 校验密码
-	if strings.Md5(req.Pass) != user.Password {
+	if egu.Md5(req.Pass) != user.Password {
 		return nil, errors.New(statusCode.PasswordWrong, "密码错误")
 	}
 
@@ -42,8 +41,8 @@ func (service *userService) Auth(req request.UserAuthRequest) (*response.UserAut
 	res := new(response.UserAuthResponse)
 	// 生成token
 	userClaims := new(data.UserClaims)
-	userClaims.ExpiresAt = date.GetTimeStamp() + 3600
-	userClaims.User.Id = user.ID
+	userClaims.ExpiresAt = egu.GetTimeStamp() + 3600
+	userClaims.User.Id = user.Id
 	userClaims.User.Email = user.Email
 	token, err := app.Jwt().GenerateToken(userClaims)
 
@@ -71,11 +70,11 @@ func (service *userService) Register(req request.UserRegisterRequest) error {
 		return errors.New(statusCode.EmailRegistered, "该邮箱已被注册")
 	}
 
-	now := int(date.GetTime().Unix())
+	now := int(egu.GetTimeStamp())
 
 	user = new(entity.UserEntity)
 	user.Email = req.Email
-	user.Password = strings.Md5(req.Pass)
+	user.Password = egu.Md5(req.Pass)
 	user.CreatedAt = now
 	user.UpdatedAt = now
 

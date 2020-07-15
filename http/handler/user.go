@@ -7,7 +7,7 @@ import (
 	"ego-demo/pkg/service"
 	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/ego/http/response"
-	"github.com/ebar-go/ego/utils/secure"
+	"github.com/ebar-go/egu"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,14 +28,14 @@ func UserAuthHandler(ctx *gin.Context) {
 	// 校验参数
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		// 使用抛出异常的方式，截断代码逻辑，让recover输出响应内容，减少return
-		secure.Panic(errors.New(statusCode.InvalidParam, err.Error()))
+		egu.SecurePanic(errors.New(statusCode.InvalidParam, err.Error()))
 	}
 
 	// 调用service的Auth方法，获得结果
 	res, err := service.User().Auth(req)
 
 	// 有错就抛panic
-	secure.Panic(err)
+	egu.SecurePanic(err)
 
 	// 输出响应内容
 	response.WrapContext(ctx).Success(res)
@@ -57,14 +57,14 @@ func UserRegisterHandler(ctx *gin.Context) {
 	// 校验参数
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		// 使用抛出异常的方式，截断代码逻辑，让recover输出响应内容，减少return
-		secure.Panic(errors.New(statusCode.InvalidParam, err.Error()))
+		egu.SecurePanic(errors.New(statusCode.InvalidParam, err.Error()))
 	}
 
 	// 调用service的Auth方法，获得结果
 	err := service.User().Register(req)
 
 	// 有错就抛panic
-	secure.Panic(err)
+	egu.SecurePanic(err)
 
 	// 输出响应内容
 	response.WrapContext(ctx).Success(nil)

@@ -1,11 +1,10 @@
 package entity
 
+import "github.com/ebar-go/ego/component/mysql"
+
 type BaseEntity struct {
-	ID        int `gorm:"primary_key;AUTO_INCREMENT;column:id" json:"id"`
+	mysql.Model
 	IsDeleted int `json:"is_deleted" gorm:"column:is_deleted"`
-	// 对time进行格式化
-	CreatedAt int `gorm:"column:created_at" json:"created_at"`
-	UpdatedAt int `gorm:"column:updated_at" json:"updated_at"`
 }
 
 const (
