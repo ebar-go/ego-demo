@@ -2,28 +2,27 @@ package main
 
 import (
 	"ego-demo/http/route"
-	"fmt"
 	"github.com/ebar-go/ego"
 	"github.com/ebar-go/ego/app"
-	"github.com/ebar-go/ego/component/event"
+	"github.com/ebar-go/ego/component/mysql"
 	"github.com/ebar-go/egu"
 )
 
 func init() {
 	// 加载配置
-	egu.SecurePanic(app.Config().LoadFile("app.yaml"))
+	egu.SecurePanic(app.Config().LoadFile("conf/app.yaml"))
 
 	// 初始化数据库
 	egu.SecurePanic(app.InitDB())
 
-	egu.SecurePanic(app.Redis().Connect())
+	egu.SecurePanic(app.DB().Use(mysql.Resolver().Register(mysql.ResolverConfig(mysql.ResolverItem{
+		Sources:  app.Config().GetStringSlice("mysql.other.sources"),
+		Replicas: app.Config().GetStringSlice("mysql.other.replicas"),
+		Tables:   app.Config().GetStringSlice("mysql.other.tables"),
+	}))))
 
-	// 支持停止http服务时的回调
-	event.Listen(event.BeforeHttpShutdown, func(ev event.Event) {
-		// 关闭数据库
-		fmt.Println("close database")
-		_ = app.DB().Close()
-	})
+	//egu.SecurePanic(app.Redis().Connect())
+
 }
 
 // @title Swagger Example API

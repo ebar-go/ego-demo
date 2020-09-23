@@ -2,17 +2,17 @@
 package service
 
 import (
+	"ego-demo/pkg/dao"
+	"ego-demo/pkg/data"
+	"ego-demo/pkg/entity"
 	"ego-demo/pkg/enum/statusCode"
 	"ego-demo/pkg/request"
 	"ego-demo/pkg/response"
-	"ego-demo/pkg/service/dao"
-	"ego-demo/pkg/service/data"
-	"ego-demo/pkg/service/entity"
 	"fmt"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/egu"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type userService struct {
@@ -57,7 +57,6 @@ func (service *userService) Auth(req request.UserAuthRequest) (*response.UserAut
 // Register 注册
 func (service *userService) Register(req request.UserRegisterRequest) error {
 	db := app.DB()
-	db.LogMode(true)
 	userDao := dao.User(db)
 	// 根据邮箱获取用户信息
 	user, err := userDao.GetByEmail(req.Email)

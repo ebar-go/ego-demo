@@ -1,7 +1,7 @@
 package helper
 
 import (
-	"ego-demo/pkg/service/data"
+	"ego-demo/pkg/data"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/egu"

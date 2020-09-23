@@ -1,22 +1,21 @@
 package dao
 
 import (
-	"ego-demo/pkg/service/entity"
-	"github.com/ebar-go/ego/component/mysql"
-	"github.com/jinzhu/gorm"
+	"ego-demo/pkg/entity"
+	"gorm.io/gorm"
 )
 
 type userDao struct {
-	mysql.Dao
+	baseDao
 }
 
 func User(db *gorm.DB) *userDao {
-	return &userDao{mysql.Dao{DB: db}}
+	return &userDao{baseDao{db}}
 }
 
 // GetByUsername 根据用户名获取记录
 func (dao *userDao) GetByEmail(email string) (*entity.UserEntity, error) {
-	query := dao.DB.Table(entity.TableUser).
+	query := dao.db.Table(entity.TableUser).
 		Where("email = ?", email).
 		Where(entity.SoftDeleteCondition)
 

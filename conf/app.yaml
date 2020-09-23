@@ -1,0 +1,35 @@
+server: # 服务器配置
+  environment: local
+  httpPort: 9091  # 端口号
+  systemName: ego-demo # 系统名称
+  maxResponseLogSize: 2000 # 响应内容截取长度
+  logPath: /tmp/app.log # 日志文件
+  traceHeader: gateway-trace # trace头
+  httpRequestTimeout: 3 # http请求超时时间，单位：秒
+  jwtSign: ego-demo-sign  # jwt的签名
+  debug: off # 日志debug
+  pprof: on
+  task: on
+  swagger: off
+
+mysql:    # mysql配置。支持多数据库，读写分离
+  maxIdleConnections: 10  # 最大空闲连接数
+  maxOpenConnections: 40  # 最大打开连接数
+  maxLifeTime: 8          # 超时时间
+  dsn: root:123456@tcp(127.0.0.1:3306)/demo?charset=utf8mb4   # data source
+  other:
+    sources:
+      - root:123456@tcp(127.0.0.1:3307)/other?charset=utf8mb4
+    replicas:
+      - root:123456@tcp(127.0.0.1:3308)/other?charset=utf8mb4
+    tables:
+      - orders
+
+redis:
+  host: 127.0.0.1
+  pass:
+  port: 6379
+  poolSize: 100
+  maxRetries: 3
+  idleTimeout: 3
+  cluster:
