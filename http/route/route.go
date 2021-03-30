@@ -3,7 +3,7 @@ package route
 
 import (
 	_ "ego-demo/docs"
-	"ego-demo/http/handler"
+	"ego-demo/internal/handler"
 	"ego-demo/pkg/data"
 	egoHandler "github.com/ebar-go/ego/http/handler"
 	"github.com/ebar-go/ego/http/middleware"

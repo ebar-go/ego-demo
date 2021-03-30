@@ -1,15 +1,24 @@
-package handler
+package impl
 
 import (
 	"ego-demo/http/helper"
+	"ego-demo/internal/handler"
+	"ego-demo/internal/service"
 	"ego-demo/pkg/enum/statusCode"
 	"ego-demo/pkg/request"
-	"ego-demo/pkg/service"
 	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/ego/http/response"
 	"github.com/ebar-go/egu"
 	"github.com/gin-gonic/gin"
 )
+
+type userHandler struct {
+	userService service.UserService
+}
+
+func newUserHandler(userService service.UserService) handler.UserHandler {
+	return &userHandler{userService: userService}
+}
 
 // UserAuthHandler 用户登录
 // @Summary 用户登录
@@ -21,7 +30,7 @@ import (
 // @Success 0 "success"
 // @Failure 500 "error"
 // @Router /user/auth [post]
-func UserAuthHandler(ctx *gin.Context) {
+func (handler userHandler) Auth(ctx *gin.Context) {
 	// 通过结构体获取参数
 	var req request.UserAuthRequest
 
@@ -32,7 +41,7 @@ func UserAuthHandler(ctx *gin.Context) {
 	}
 
 	// 调用service的Auth方法，获得结果
-	res, err := service.User().Auth(req)
+	res, err := handler.userService.Auth(req)
 
 	// 有错就抛panic
 	egu.SecurePanic(err)
@@ -51,7 +60,7 @@ func UserAuthHandler(ctx *gin.Context) {
 // @Success 0 "success"
 // @Failure 500 "error"
 // @Router /user/register [post]
-func UserRegisterHandler(ctx *gin.Context) {
+func (handler userHandler) Register(ctx *gin.Context) {
 	var req request.UserRegisterRequest
 
 	// 校验参数
@@ -61,7 +70,7 @@ func UserRegisterHandler(ctx *gin.Context) {
 	}
 
 	// 调用service的Auth方法，获得结果
-	err := service.User().Register(req)
+	err := handler.userService.Register(req)
 
 	// 有错就抛panic
 	egu.SecurePanic(err)

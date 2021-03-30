@@ -3,7 +3,7 @@ package entity
 import "github.com/ebar-go/ego/component/mysql"
 
 type BaseEntity struct {
-	mysql.Model
+	mysql.Entity
 	IsDeleted int `json:"is_deleted" gorm:"column:is_deleted"`
 }
 

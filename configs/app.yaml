@@ -1,15 +1,18 @@
 server: # 服务器配置
   environment: local
-  httpPort: 9091  # 端口号
-  systemName: ego-demo # 系统名称
-  maxResponseLogSize: 2000 # 响应内容截取长度
+  name: ego-demo # 系统名称
   logPath: /tmp/app.log # 日志文件
-  traceHeader: gateway-trace # trace头
-  httpRequestTimeout: 3 # http请求超时时间，单位：秒
-  jwtSign: ego-demo-sign  # jwt的签名
   debug: off # 日志debug
-  pprof: on
+
   task: on
+
+
+http:
+  port: 9091  # 端口号
+  traceHeader: gateway-trace # trace头
+  requestTimeout: 3 # http请求超时时间，单位：秒
+  jwtSign: ego-demo-sign  # jwt的签名
+  pprof: on
   swagger: off
 
 mysql:    # mysql配置。支持多数据库，读写分离

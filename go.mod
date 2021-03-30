@@ -23,4 +23,4 @@ require (
 	gorm.io/gorm v1.20.1
 )
 
-//replace github.com/ebar-go/ego => /home/hongker/Workspace/go/src/github.com/ebar-go/ego
+replace github.com/ebar-go/ego => /home/hongker/Workspace/go/src/github.com/ebar-go/ego
