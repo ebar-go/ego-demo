@@ -1,16 +1,21 @@
 package repository
 
 import (
-	"ego-demo/pkg/data"
-	"ego-demo/pkg/entity"
+	"ego-demo/internal/entity"
+	"ego-demo/internal/repository/impl"
+	"github.com/ebar-go/ego/component/mysql"
+	"go.uber.org/dig"
 )
 
 type UserRepo interface {
+	// 根据邮箱查找用户
 	FindByEmail(email string) (*entity.UserEntity, error)
-	BuildUserData(userEntity *entity.UserEntity) data.User
+	// 创建用户
+	CreateUser(userEntity *entity.UserEntity) error
 }
 
-type TokenRepo interface {
-	CreateToken(user data.User) (string, error)
-	ValidateToken(token string) (data.User, error)
+func Inject(container *dig.Container) {
+	_ = container.Provide(func(db mysql.Database) UserRepo{
+		return impl.NewUserRepo(db)
+	})
 }

@@ -1,12 +1,11 @@
 package main
 
 import (
+	"ego-demo/cmd/server/handler"
 	"ego-demo/cmd/server/route"
-	handlerImpl "ego-demo/internal/handler/impl"
-	serviceImpl "ego-demo/internal/service/impl"
+	"ego-demo/internal/repository"
+	"ego-demo/internal/service"
 	"github.com/ebar-go/ego"
-	"github.com/ebar-go/egu"
-
 	"log"
 )
 
@@ -24,20 +23,25 @@ import (
 
 // @BasePath /v1
 func main() {
-	// 加载配置
 	app := ego.App()
-	egu.SecurePanic(app.LoadConfig("configs/app.yaml"))
-
-	if err := serviceImpl.Inject(app.Container()); err != nil {
-		log.Fatalf("inject service failed: %v\n", err)
+	// 加载配置
+	if err := app.LoadConfig("configs/app.yaml"); err != nil {
+		log.Fatalf("unable to load config: %v", err)
 	}
 
-	if err := handlerImpl.Inject(app.Container()); err != nil {
-		log.Fatalf("inject handler failed: %v\n", err)
+	// 注入repository
+	repository.Inject(app.Container())
+	// 注入service
+	service.Inject(app.Container())
+	// 注入handler
+	handler.Inject(app.Container())
+
+	// 加载路由
+	if err := app.LoadRouter(route.Loader); err != nil {
+		log.Fatalf("unable to load router: %v", err)
 	}
 
-	egu.SecurePanic(app.Container().Invoke(route.Loader))
-
+	// 启动http服务
 	app.ServeHTTP()
 	app.Run()
 }

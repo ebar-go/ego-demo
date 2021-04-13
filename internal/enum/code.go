@@ -1,4 +1,4 @@
-package statusCode
+package enum
 
 const (
 	InvalidParam        = 1001

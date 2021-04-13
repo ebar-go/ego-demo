@@ -4,8 +4,6 @@ server: # 服务器配置
   logPath: /tmp/app.log # 日志文件
   debug: off # 日志debug
 
-  task: on
-
 
 http:
   port: 9091  # 端口号
@@ -13,7 +11,7 @@ http:
   requestTimeout: 3 # http请求超时时间，单位：秒
   jwtSign: ego-demo-sign  # jwt的签名
   pprof: on
-  swagger: off
+  swagger: on
 
 mysql:    # mysql配置。支持多数据库，读写分离
   maxIdleConnections: 10  # 最大空闲连接数

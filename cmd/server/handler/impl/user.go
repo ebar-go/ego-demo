@@ -1,11 +1,9 @@
 package impl
 
 import (
-	"ego-demo/http/helper"
-	"ego-demo/internal/handler"
+	"ego-demo/internal/dto/request"
+	"ego-demo/internal/enum"
 	"ego-demo/internal/service"
-	"ego-demo/pkg/enum/statusCode"
-	"ego-demo/pkg/request"
 	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/ego/http/response"
 	"github.com/ebar-go/egu"
@@ -16,7 +14,7 @@ type userHandler struct {
 	userService service.UserService
 }
 
-func newUserHandler(userService service.UserService) handler.UserHandler {
+func NewUserHandler(userService service.UserService) *userHandler {
 	return &userHandler{userService: userService}
 }
 
@@ -37,7 +35,7 @@ func (handler userHandler) Auth(ctx *gin.Context) {
 	// 校验参数
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		// 使用抛出异常的方式，截断代码逻辑，让recover输出响应内容，减少return
-		egu.SecurePanic(errors.New(statusCode.InvalidParam, err.Error()))
+		egu.SecurePanic(errors.New(enum.InvalidParam, err.Error()))
 	}
 
 	// 调用service的Auth方法，获得结果
@@ -66,7 +64,7 @@ func (handler userHandler) Register(ctx *gin.Context) {
 	// 校验参数
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		// 使用抛出异常的方式，截断代码逻辑，让recover输出响应内容，减少return
-		egu.SecurePanic(errors.New(statusCode.InvalidParam, err.Error()))
+		egu.SecurePanic(errors.New(enum.InvalidParam, err.Error()))
 	}
 
 	// 调用service的Auth方法，获得结果
@@ -78,12 +76,4 @@ func (handler userHandler) Register(ctx *gin.Context) {
 	// 输出响应内容
 	response.WrapContext(ctx).Success(nil)
 
-}
-
-// GetUserInfoHandler 获取用户信息
-func GetUserInfoHandler(ctx *gin.Context) {
-	loginUser := helper.GeLoginUserFromContext(ctx)
-	response.WrapContext(ctx).Success(response.Data{
-		"email": loginUser.Email,
-	})
 }

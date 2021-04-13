@@ -2,29 +2,26 @@
 package route
 
 import (
+	"ego-demo/cmd/server/handler"
 	_ "ego-demo/docs"
-	"ego-demo/internal/handler"
 	"github.com/ebar-go/ego/component/log"
-	"github.com/ebar-go/ego/http"
 	"github.com/ebar-go/ego/http/middleware"
 	"github.com/gin-gonic/gin"
 )
 
 // Load
 func Loader(router *gin.Engine,
-	conf *http.Config,
 	logger *log.Logger,
-	indexHandler handler.IndexHandler, userHandler handler.UserHandler) {
+	indexHandler handler.IndexHandler,
+	userHandler handler.UserHandler,
+) {
 	// 加载中间件,trace,cors,requestLog,recover
-	router.Use(middleware.CORS, middleware.RequestLog(logger), middleware.Recover)
-
-	// 通过 {host}/swagger/index.html访问swagger web
-	router.GET("/swagger/*any", middleware.Swagger(conf.Swagger))
-
+	router.Use(middleware.CORS,  middleware.Recover)
 	router.GET("/", indexHandler.Index)
 
 	// 定义版本，方便版本升级
 	v1 := router.Group("v1")
+	v1.Use(middleware.RequestLog(logger))
 	{
 		// 登录
 		v1.POST("user/login", userHandler.Auth)

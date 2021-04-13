@@ -92,6 +92,8 @@ github.com/ebar-go/ego v0.9.15 h1:bqCpTXvBXAbsu6Z57t0OjI1tTfTyxmBieQzCAzJdozM=
 github.com/ebar-go/ego v0.9.15/go.mod h1:6lQWysixTJB5LFWeRzRz5LKRLoMWMRrvy53+SkmciBI=
 github.com/ebar-go/ego v0.9.16 h1:BmzXj7/vP65imgowAaT3wdUva3Jxb0J74Q6Kb74gXkA=
 github.com/ebar-go/ego v0.9.16/go.mod h1:jU/blkljuC8+wxA1emfRRGKD03jSccP5cniLzWz/114=
+github.com/ebar-go/ego v1.0.1 h1:sibd9xhyfbT2oCKHw4uIKnXPd86KOeeUlg0VS50onIM=
+github.com/ebar-go/ego v1.0.1/go.mod h1:UxsVUGfi7UXHvpidFIhSJozm2llNi/C8KKnn0EVi7YI=
 github.com/ebar-go/egu v0.1.1 h1:3033AFrnLTK5/3n+rBTK4cCf9JQUhZAMaAUscYap0fw=
 github.com/ebar-go/egu v0.1.1/go.mod h1:tKvwedbWpWCYDhZtKm69mNo3evgdcnLbKr/EMoaKDhg=
 github.com/ebar-go/event v0.1.0/go.mod h1:6jbMJhW8ZMmM6iOz6cI9EaYP7xbFGsIz9N17c/CB06Y=
@@ -350,6 +352,8 @@ github.com/onsi/gomega v1.4.3/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1Cpa
 github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7JYyY=
 github.com/onsi/gomega v1.10.1/go.mod h1:iN09h71vgCQne3DLsj+A5owkum+a2tYe+TOCB1ybHNo=
 github.com/openzipkin/zipkin-go v0.1.6/go.mod h1:QgAqvLzwWbR/WpD4A3cGpPtJrZXNIiJc5AZX7/PBEpw=
+github.com/orcaman/concurrent-map v0.0.0-20210106121528-16402b402231 h1:fa50YL1pzKW+1SsBnJDOHppJN9stOEwS+CRWyUtyYGU=
+github.com/orcaman/concurrent-map v0.0.0-20210106121528-16402b402231/go.mod h1:Lu3tH6HLW3feq74c2GC+jIMS/K2CFcDWnWD9XkenwhI=
 github.com/pascaldekloe/goe v0.0.0-20180627143212-57f6aae5913c/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
 github.com/pelletier/go-toml v1.2.0 h1:T5zMGML61Wp+FlcbWjRDT7yAxhJNAiPPLOFECq181zc=
 github.com/pelletier/go-toml v1.2.0/go.mod h1:5z9KED0ma1S8pY6P1sdut58dfprrGBbd/94hg7ilaic=
